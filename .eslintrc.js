@@ -25,11 +25,29 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["@typescript-eslint", "react", "import"],
   rules: {
     "no-console": "warn",
     "react/react-in-jsx-scope": "off",
     "import/prefer-default-export": "off",
+    "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
+    "no-unused-expressions": "error",
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type",
+        ],
+        "newlines-between": "always-and-inside-groups",
+      },
+    ],
     curly: "error",
     "prettier/prettier": [
       "warn",
