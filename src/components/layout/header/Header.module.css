@@ -1,0 +1,26 @@
+.header {
+  height: 80px;
+  display: flex;
+  background-color: #141414;
+}
+
+.header svg {
+  height: 55px;
+  width: 150px;
+}
+
+.header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header a {
+  color: #fff;
+  text-decoration: unset;
+}
+
+.header .userLinks {
+  display: flex;
+  column-gap: 15px;
+}
