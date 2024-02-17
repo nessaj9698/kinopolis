@@ -1,0 +1,8 @@
+.buttonElement {
+    background:linear-gradient(135deg,#f50 69.93%,#d6bb00);
+    outline:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    border-radius:5px;
+}
