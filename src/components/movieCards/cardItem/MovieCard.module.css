@@ -1,0 +1,15 @@
+.movieCard {
+    width:20%;
+    border-radius:5px;
+    border:1px solid #f50;
+}
+
+.movieCard img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.movieCard h2 {
+    margin:5px;
+}
