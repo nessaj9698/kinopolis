@@ -1,5 +1,11 @@
-import React from "react"
+import { Logo } from "../../logo/Logo"
+
+import s from "./Footer.module.css"
 
 export function Footer() {
-  return <div>Footer</div>
+  return (
+    <footer className={s.siteFooter}>
+      <Logo />
+    </footer>
+  )
 }
