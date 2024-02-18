@@ -1,5 +1,3 @@
-import React from "react"
-
 import s from "./Button.module.css"
 
 interface Props {
@@ -7,7 +5,7 @@ interface Props {
   handleClick: () => void
 }
 
-export const Button: React.FC<Props> = ({ btnText, handleClick }) => {
+export const Button = ({ btnText, handleClick }: Props) => {
   return (
     <button className={s.buttonElement} onClick={handleClick}>
       {btnText}

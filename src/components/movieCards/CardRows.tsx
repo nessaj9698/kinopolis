@@ -1,5 +1,3 @@
-import React from "react"
-
 import s from "./CardRows.module.css"
 import { MovieCard } from "./cardItem/MovieCard"
 
@@ -7,7 +5,7 @@ interface Props {
   data: Array<object>
 }
 
-export const CardRows: React.FC<Props> = ({ data }) => {
+export const CardRows = ({ data }: Props) => {
   return (
     <div className={s.cardRows}>
       {data.map(() => (

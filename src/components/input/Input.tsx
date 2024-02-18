@@ -1,18 +1,14 @@
-import React, { ChangeEvent } from "react"
+import { ChangeEvent } from "react"
 
 import s from "./Input.module.css"
 
-interface InputProps {
+interface Props {
   value: string
   handleChange: (value: string) => void
   placeholder?: string
 }
 
-export const Input: React.FC<InputProps> = ({
-  value,
-  handleChange,
-  placeholder = "",
-}) => {
+export const Input = ({ value, handleChange, placeholder = "" }: Props) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleChange(e.target.value)
   }

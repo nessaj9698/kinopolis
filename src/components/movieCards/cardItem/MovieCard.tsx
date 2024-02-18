@@ -1,5 +1,3 @@
-import React from "react"
-
 import s from "./MovieCard.module.css"
 
 interface Props {
@@ -7,7 +5,7 @@ interface Props {
   thumbnailUrl: string
 }
 
-export const MovieCard: React.FC<Props> = ({ title, thumbnailUrl }) => {
+export const MovieCard = ({ title, thumbnailUrl }: Props) => {
   return (
     <article className={s.movieCard}>
       <img src={thumbnailUrl} />
