@@ -32,6 +32,7 @@ module.exports = {
     "import/prefer-default-export": "off",
     "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
     "no-unused-expressions": "error",
+    "no-useless-catch": "off",
     "import/order": [
       "error",
       {
