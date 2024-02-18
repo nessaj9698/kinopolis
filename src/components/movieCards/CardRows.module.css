@@ -1,4 +1,7 @@
 .cardRows {
     display:flex;
-    column-gap:2.5%;
+    flex-wrap:wrap;
+    column-gap:2%;
+    row-gap:30px;
+    margin:30px 0;
 }
