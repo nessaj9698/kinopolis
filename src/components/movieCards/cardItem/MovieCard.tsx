@@ -1,15 +1,16 @@
+import { Link } from "react-router-dom"
+
+import { Movie } from "../../../types/Movies"
+
 import s from "./MovieCard.module.css"
 
-interface Props {
-  title: string
-  thumbnailUrl: string
-}
-
-export const MovieCard = ({ title, thumbnailUrl }: Props) => {
+export const MovieCard = ({ kinopoiskId, nameRu, posterUrlPreview }: Movie) => {
   return (
-    <article className={s.movieCard}>
-      <img src={thumbnailUrl} />
-      <h2>{title}</h2>
-    </article>
+    <Link to={`/movie/${kinopoiskId}`}>
+      <article className={s.movieCard}>
+        <img src={posterUrlPreview} />
+        <h2>{nameRu}</h2>
+      </article>
+    </Link>
   )
 }
