@@ -1,5 +1,10 @@
 export type Movie = {
-  kinopoiskId: number
-  nameRu: string
-  posterUrlPreview: string
+  id: number
+  name: string
+  poster: MoviePoster
+}
+
+type MoviePoster = {
+  previewUrl: string
+  url: string
 }

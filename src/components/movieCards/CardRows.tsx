@@ -8,10 +8,10 @@ export const CardRows = ({ data }: { data: Movie[] }) => {
     <div className={s.cardRows}>
       {data.map((movie) => (
         <MovieCard
-          kinopoiskId={movie.kinopoiskId}
-          nameRu={movie.nameRu}
-          posterUrlPreview={movie.posterUrlPreview}
-          key={movie.kinopoiskId}
+          id={movie.id}
+          name={movie.name}
+          poster={movie.poster}
+          key={movie.id}
         />
       ))}
     </div>
