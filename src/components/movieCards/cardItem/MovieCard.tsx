@@ -4,12 +4,12 @@ import { Movie } from "../../../types/Movies"
 
 import s from "./MovieCard.module.css"
 
-export const MovieCard = ({ kinopoiskId, nameRu, posterUrlPreview }: Movie) => {
+export const MovieCard = ({ id, name, poster }: Movie) => {
   return (
-    <Link to={`/movie/${kinopoiskId}`}>
+    <Link to={`/movie/${id}`}>
       <article className={s.movieCard}>
-        <img src={posterUrlPreview} />
-        <h2>{nameRu}</h2>
+        <img src={poster.previewUrl} />
+        <h2>{name}</h2>
       </article>
     </Link>
   )

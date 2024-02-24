@@ -1,15 +1,17 @@
 import { createBrowserRouter } from "react-router-dom"
 
-import HomePage from "../pages/HomePage/HomePage"
-import SearchPage from "../pages/SearchPage/SearchPage"
+import { lazy } from "react"
+
+const LazyHomePage = lazy(() => import("../pages/HomePage/HomePage"))
+const LazySearchPage = lazy(() => import("../pages/SearchPage/SearchPage"))
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <LazyHomePage />,
   },
   {
     path: "/search",
-    element: <SearchPage />,
+    element: <LazySearchPage />,
   },
 ])
