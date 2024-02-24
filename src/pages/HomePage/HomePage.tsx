@@ -31,8 +31,7 @@ export function HomePage() {
         <section className={s.heroSection}>
           <Container>
             <h1>Найди свой фильм</h1>
-            <SearchForm/>
-            {/* TODO: Поиск пока не работает, это лишь временная заглушка */}
+            <SearchForm />
           </Container>
         </section>
         <section>

@@ -1,4 +1,15 @@
 .searchFormWrapper {
   display: flex;
   column-gap: 10px;
+  width: 370px;
+  flex-wrap:wrap;
+  position:relative;
+}
+
+.searchFormWrapper ul {
+  display:none;
+}
+
+.searchFormWrapper input:focus ~ ul {
+  display:block;
 }
