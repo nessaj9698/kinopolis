@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useMemo } from "react"
 
 import { useLoaderData } from "react-router-dom"
 
@@ -12,18 +12,16 @@ import { Movie } from "../../types/Movies"
 import s from "./SearchPage.module.css"
 
 export const SearchPage = () => {
-  const [searchPageData, setSearchPageData] = useState<Movie[]>([])
   const data = useLoaderData() as Movie[]
 
-  useEffect(() => {
-    setSearchPageData(data)
-  }, [])
+  const memoizedData: Movie[] = useMemo(() => data, [data])
+
   return (
     <>
       <Header />
       <Container>
         <h2 className={s.searchPageTitle}>Результаты поиска:</h2>
-        <CardRows data={searchPageData} />
+        <CardRows data={memoizedData} />
       </Container>
       <Footer />
     </>
