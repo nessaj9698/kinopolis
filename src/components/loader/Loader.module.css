@@ -1,6 +1,13 @@
 .loader {
     animation: rotate 1.5s linear infinite;
     transform-origin: center;
+    max-width:300px;
+  }
+  
+  .loaderWrapper {
+    display:flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .loaderCircle {
