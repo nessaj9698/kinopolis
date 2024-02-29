@@ -6,3 +6,11 @@
   font-family: "Montserrat", sans-serif;
   font-style: normal;
 }
+
+:root {
+  --btn-bg-color:#f50;
+}
+
+#root {
+  background-color: #f4f4f4;
+}
