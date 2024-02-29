@@ -27,10 +27,13 @@ export const fetchAllMovies = async (): Promise<Movie[]> => {
   }
 }
 
-export const fetchMoviesByQuery = async (query: string): Promise<Movie[]> => {
+export const fetchMoviesByQuery = async (
+  query: string,
+  limit?: number,
+): Promise<Movie[]> => {
   try {
     const result = await fetch(
-      `${BASE_URL}/v1.4/movie/search?query=${query}&limit=5`,
+      `${BASE_URL}/v1.4/movie/search?query=${query}&limit=${limit !== undefined ? limit : 5}`,
       {
         method: "GET",
         headers: {
