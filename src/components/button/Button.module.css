@@ -1,5 +1,5 @@
 .buttonElement {
-    background:linear-gradient(135deg,#f50 69.93%,#d6bb00);
+    background:var(--btn-bg-color);
     outline:none;
     border:none;
     color:#fff;
