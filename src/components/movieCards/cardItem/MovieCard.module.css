@@ -2,6 +2,7 @@
     width:100%;
     border-radius:5px;
     border:1px solid #f50;
+    position:relative;
 }
 
 .movieCard img {
@@ -13,4 +14,16 @@
 .movieCard h2 {
     margin:5px;
     font-size: 18px;
+}
+
+.movieCard > svg {
+    position: absolute;
+    top:5px;
+    right: 10px;
+    width: 30px;
+}
+
+.movieCard:hover img {
+    background-color: black;
+    filter: brightness(0.5);
 }
