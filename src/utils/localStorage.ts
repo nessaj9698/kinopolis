@@ -5,9 +5,10 @@ export const saveUserToLS = (user: User) => {
   localStorage.setItem("user", JSON.stringify(user))
 }
 
-export const removeUserFromLS = () => {
+export const removeDataFromLS = () => {
   localStorage.removeItem("user")
   localStorage.removeItem("likedMovies")
+  localStorage.removeItem("history")
 }
 
 export const getUserFromLS = () => {
@@ -46,5 +47,34 @@ export const saveDataToLS = (obj: DataFromDB) => {
       const keysArray = Object.keys(obj[category])
       localStorage.setItem(category, JSON.stringify(keysArray))
     }
+  }
+}
+
+export const getDataFromLS = (dataItem: "likedMovies" | "history") => {
+  const data = localStorage.getItem(dataItem)
+  if (data) {
+    const dataArray = JSON.parse(data)
+    return dataArray
+  }
+  return []
+}
+
+export const updateSearchHistoryLS = (query: string) => {
+  const history = getDataFromLS("history")
+  const queryIndex = history.indexOf(query)
+
+  if (queryIndex === -1) {
+    const newHistoryData = JSON.stringify([...history, query])
+    localStorage.setItem("history", newHistoryData)
+  }
+}
+
+export const removeItemFromHistoryLS = (valueToRemove: string) => {
+  const history = getDataFromLS("history")
+  const indexToRemove = history.indexOf(valueToRemove)
+
+  if (indexToRemove !== -1) {
+    history.splice(indexToRemove, 1)
+    localStorage.setItem("history", JSON.stringify(history))
   }
 }
