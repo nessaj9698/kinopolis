@@ -24,3 +24,16 @@
   display: flex;
   column-gap: 15px;
 }
+
+.header .userLinks nav {
+  display:flex;
+}
+
+.header .userLinks ul {
+  display:flex;
+  column-gap:20px;
+}
+
+.header .userLinks button {
+  margin-left:20px;
+}

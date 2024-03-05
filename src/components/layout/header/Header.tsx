@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom"
 
 import { Logo } from "../../logo/Logo"
 import { Container } from "../container/Container"
+import { NavigationLinks } from "../navigation/Navigation"
 
 import s from "./Header.module.css"
 
@@ -13,8 +14,7 @@ export function Header() {
           <Logo />
         </NavLink>
         <div className={s.userLinks}>
-          <NavLink to="/login">Вход</NavLink>
-          <NavLink to="/registration">Регистрация</NavLink>
+          <NavigationLinks />
         </div>
       </Container>
     </header>

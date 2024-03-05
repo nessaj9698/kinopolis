@@ -1,5 +1,3 @@
-import { Header } from "../../components/layout/header/Header"
-import { Footer } from "../../components/layout/footer/Footer"
 import { Container } from "../../components/layout/container/Container"
 import { UserForm } from "../../components/userForm/UserForm"
 import { UserFormInputs } from "../../types/User"
@@ -22,19 +20,15 @@ const RegistrationPage = () => {
     (state) => state.auth.registrationError,
   )
   return (
-    <>
-      <Header />
-      <Container className={s.userFormWrapper}>
-        <UserForm
-          title="Регистрация"
-          submitText="Зарегистрироваться"
-          onSubmitHandler={handleRegistration}
-          requestStatus={registrationStatus}
-          error={registrationErrorStatus}
-        />
-      </Container>
-      <Footer />
-    </>
+    <Container className={s.userFormWrapper}>
+      <UserForm
+        title="Регистрация"
+        submitText="Зарегистрироваться"
+        onSubmitHandler={handleRegistration}
+        requestStatus={registrationStatus}
+        error={registrationErrorStatus}
+      />
+    </Container>
   )
 }
 

@@ -5,9 +5,19 @@ import { login } from "../api/authApi"
 import { register } from "../api/authApi"
 import { UserFormInputs } from "../types/User"
 import { RegistrationErrorData } from "../types/User"
-import { saveUserToLS, removeUserFromLS } from "../utils/localStorage"
+import {
+  saveUserToLS,
+  removeDataFromLS,
+  saveDataToLS,
+} from "../utils/localStorage"
+import { getUserDataFromDB } from "../firebase/database/database"
 
 type requestStatus = null | "complete" | "processing" | string
+
+type loginThunkProps = {
+  data: UserFormInputs
+  navigate: (to: string) => void
+}
 
 type authState = {
   isAuth: boolean
@@ -29,12 +39,19 @@ const initialState: authState = {
 
 export const Login = createAsyncThunk(
   "auth/login",
-  async (data: UserFormInputs, { rejectWithValue, dispatch }) => {
+  async (
+    { data, navigate }: loginThunkProps,
+    { rejectWithValue, dispatch },
+  ) => {
     try {
       const response = await login(data)
-
-      const user = response.toJSON()
+      const user = response.toJSON() as User
       dispatch(setUser(user))
+      if (user.uid !== null) {
+        const dbData = await getUserDataFromDB(user.uid)
+        saveDataToLS(dbData)
+      }
+      navigate("/")
     } catch (error) {
       return rejectWithValue(error as Error)
     }
@@ -46,7 +63,7 @@ export const Registration = createAsyncThunk(
   async (data: UserFormInputs, { rejectWithValue }) => {
     try {
       const response = await register(data)
-      return response.toJSON()
+      return response.toJSON() as User
     } catch (error) {
       return rejectWithValue(error as Error)
     }
@@ -60,14 +77,15 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.isAuth = true
       state.user = {
-        id: action.payload.uid,
+        uid: action.payload.uid,
         email: action.payload.email,
       }
     },
     removeUser: (state) => {
       state.user = null
       state.isAuth = false
-      removeUserFromLS()
+      state.loginizationStatus = null
+      removeDataFromLS()
     },
   },
   extraReducers: (builder) => {

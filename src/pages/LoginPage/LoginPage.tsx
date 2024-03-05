@@ -1,5 +1,5 @@
-import { Header } from "../../components/layout/header/Header"
-import { Footer } from "../../components/layout/footer/Footer"
+import { useNavigate } from "react-router-dom"
+
 import { Container } from "../../components/layout/container/Container"
 import { UserForm } from "../../components/userForm/UserForm"
 import { useAppDispatch } from "../../hooks/useAppDispatch"
@@ -13,6 +13,7 @@ import s from "./LoginPage.module.css"
 
 const LoginPage = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const loginizationStatus = useAppSelector(
     (state) => state.auth.loginizationStatus,
   )
@@ -22,33 +23,29 @@ const LoginPage = () => {
   const user = useAppSelector((state) => state.auth.user)
 
   const handleLogin = (data: UserFormInputs) => {
-    dispatch(Login(data))
+    dispatch(Login({ data, navigate }))
   }
 
   const handleLogOut = () => {
     dispatch(removeUser())
   }
   return (
-    <>
-      <Header />
-      <Container className={s.userFormWrapper}>
-        {!user ? (
-          <UserForm
-            title="Вход"
-            submitText="Войти"
-            onSubmitHandler={handleLogin}
-            requestStatus={loginizationStatus}
-            error={loginizationErrorText}
-          />
-        ) : (
-          <div>
-            <p>Вы уже авторизованны</p>
-            <Button btnText="Выйти" handleClick={() => handleLogOut()} />
-          </div>
-        )}
-      </Container>
-      <Footer />
-    </>
+    <Container className={s.userFormWrapper}>
+      {!user ? (
+        <UserForm
+          title="Вход"
+          submitText="Войти"
+          onSubmitHandler={handleLogin}
+          requestStatus={loginizationStatus}
+          error={loginizationErrorText}
+        />
+      ) : (
+        <div>
+          <p>Вы уже авторизованны</p>
+          <Button btnText="Выйти" handleClick={() => handleLogOut()} />
+        </div>
+      )}
+    </Container>
   )
 }
 
