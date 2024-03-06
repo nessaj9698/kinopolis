@@ -13,7 +13,9 @@ export const setUserDataToDB = (
   entity: "likedMovies" | "history",
   data: string | number,
 ) => {
-  set(child(getUserRef(userId), `${entity}/${data}`), true)
+  if (userId) {
+    set(child(getUserRef(userId), `${entity}/${data}`), true)
+  }
 }
 
 export const deleteUserDataFromDB = (
