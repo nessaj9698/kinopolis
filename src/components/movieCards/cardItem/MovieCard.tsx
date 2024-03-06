@@ -9,12 +9,12 @@ import {
   deleteUserDataFromDB,
   setUserDataToDB,
 } from "../../../firebase/database/database"
-import { useAppSelector } from "../../../hooks/useAppSelector"
+import { useAppSelector, userIdSelector } from "../../../hooks/useAppSelector"
 
 import s from "./MovieCard.module.css"
 
 export const MovieCard = ({ id, name, poster }: Movie) => {
-  const userId = useAppSelector((state) => state.auth.user?.uid)
+  const userId = useAppSelector(userIdSelector)
   const addToFavourite = useCallback(() => {
     if (userId) {
       setUserDataToDB(userId, "likedMovies", id)
@@ -29,11 +29,7 @@ export const MovieCard = ({ id, name, poster }: Movie) => {
   return (
     <Link to={`/movie/${id}`}>
       <article className={s.movieCard}>
-        <img
-          src={
-            poster.previewUrl !== null ? poster.previewUrl : moviePosterDefault
-          }
-        />
+        <img src={poster.previewUrl || moviePosterDefault} />
         <h2>{name}</h2>
         {userId && (
           <HeartIcon

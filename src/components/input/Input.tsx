@@ -7,12 +7,17 @@ interface Props {
   value?: string
   handleChange: (e: string) => void
   placeholder?: string
+  onFocus?: () => void
+  onBlur?: () => void
+  required?: boolean
 }
 
 export const Input = ({
   value = "",
   handleChange,
   placeholder = "",
+  onFocus,
+  onBlur,
 }: Props) => {
   const [inputValue, setInputValue] = useState<string>("")
 
@@ -30,6 +35,8 @@ export const Input = ({
         handleInputChange(e.target.value)
       }
       placeholder={placeholder}
+      onFocus={onFocus}
+      onBlur={onBlur}
     />
   )
 }

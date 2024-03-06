@@ -5,10 +5,10 @@ export const GuestNavigation = () => {
     <nav>
       <ul>
         <li>
-          <NavLink to="/login">Вход</NavLink>
+          <NavLink to="/signin">Вход</NavLink>
         </li>
         <li>
-          <NavLink to="/registration">Регистрация</NavLink>
+          <NavLink to="/signup">Регистрация</NavLink>
         </li>
       </ul>
     </nav>

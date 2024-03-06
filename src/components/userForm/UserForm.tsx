@@ -3,7 +3,6 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { SerializedError } from "@reduxjs/toolkit"
 
 import { UserFormInputs } from "../../types/User"
-import { RegistrationErrorData } from "../../types/User"
 
 import s from "./UserForm.module.css"
 
