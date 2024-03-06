@@ -1,24 +1,57 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+
+import { createContext } from "react"
+
+import { useMemo } from "react"
 
 import { Loader } from "../../components/loader/Loader"
 
-import { getFavouriteMovies } from "../../utils/getFavouriteMovies"
+import { getFavouriteMoviesFormattedIds } from "../../utils/getFavouriteMovies"
 
 import { CardRows } from "../../components/movieCards/CardRows"
 import { Container } from "../../components/layout/container/Container"
-import { Movie } from "../../types/Movies"
+import { useGetMoviesByIdQuery } from "../../store/moviesQuery"
+
+import s from "./FavouritesPage.module.css"
+
+export type FavouritesContextType = {
+  removeFromFavorites?: () => void
+}
+
+export const FavouritesContext = createContext<null | FavouritesContextType>(
+  null,
+)
 
 const FavouritesPage = () => {
-  const [data, setData] = useState<Movie[]>([])
-  useEffect(() => {
-    getFavouriteMovies().then((resolve) => {
-      setData(resolve)
-    })
-  }, [])
+  const [idsWithFormatting, setIdsWithFormatting] = useState(() =>
+    getFavouriteMoviesFormattedIds(),
+  )
+
+  const handleRemoveFromFavorites = () => {
+    setIdsWithFormatting(getFavouriteMoviesFormattedIds())
+  }
+
+  const contextValue = useMemo(() => {
+    return {
+      removeFromFavorites: handleRemoveFromFavorites,
+    }
+  }, [handleRemoveFromFavorites])
+
+  const { data, error, isLoading } = useGetMoviesByIdQuery(idsWithFormatting, {
+    skip: idsWithFormatting.length === 0,
+  })
+
   return (
-    <Container className="maximum-height">
-      {data ? <CardRows data={data} /> : <Loader />}
-    </Container>
+    <FavouritesContext.Provider value={contextValue}>
+      <Container className="maximum-height">
+        {data && idsWithFormatting && <CardRows data={data} />}
+        {isLoading && <Loader />}
+        {error && <h1>Ошибка</h1>}
+        {idsWithFormatting.length === 0 && (
+          <h1 className={s.Heading}>Нет избранных фильмов</h1>
+        )}
+      </Container>
+    </FavouritesContext.Provider>
   )
 }
 
