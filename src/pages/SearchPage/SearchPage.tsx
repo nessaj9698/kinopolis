@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { CardRows } from "../../components/movieCards/CardRows"
 import { Container } from "../../components/layout/container/Container"
 
-import { useGetMoviesByTitleQuery } from "../../store/moviesQuery"
+import { useGetMoviesByTitleQuery } from "../../store/moviesQueryApi"
 import { ErrorBoundary } from "../../components/errorBoundary/ErrorBoundary"
 
 import { Loader } from "../../components/loader/Loader"

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 
-import { moviesApi } from "./moviesQuery"
+import { moviesApi } from "./moviesQueryApi"
 import { authMiddleware } from "./authMiddleware"
 
 import movies from "./moviesSlice"

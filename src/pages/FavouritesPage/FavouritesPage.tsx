@@ -10,7 +10,7 @@ import { getFavouriteMoviesFormattedIds } from "../../utils/getFavouriteMovies"
 
 import { CardRows } from "../../components/movieCards/CardRows"
 import { Container } from "../../components/layout/container/Container"
-import { useGetMoviesByIdQuery } from "../../store/moviesQuery"
+import { useGetMoviesByIdQuery } from "../../store/moviesQueryApi"
 
 import s from "./FavouritesPage.module.css"
 

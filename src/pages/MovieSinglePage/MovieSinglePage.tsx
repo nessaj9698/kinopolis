@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 
 import { Container } from "../../components/layout/container/Container"
-import { useGetSingleMovieByIdQuery } from "../../store/moviesQuery"
+import { useGetSingleMovieByIdQuery } from "../../store/moviesQueryApi"
 
 import { Loader } from "../../components/loader/Loader"
 

@@ -2,7 +2,7 @@ import { Container } from "../../components/layout/container/Container"
 import { SearchForm } from "../../components/searchForm/SearchForm"
 import { CardRows } from "../../components/movieCards/CardRows"
 import { Loader } from "../../components/loader/Loader"
-import { useGetAllMoviesQuery } from "../../store/moviesQuery"
+import { useGetAllMoviesQuery } from "../../store/moviesQueryApi"
 
 import s from "./Homepage.module.css"
 
