@@ -1,9 +1,16 @@
 import { MovieApiData, Movie } from "../types/Movies"
 
 export const getRestructuredApiData = (data: MovieApiData) => {
-  return data.docs.map(({ id, name, poster }: Movie) => {
-    return { id, name, poster } as Movie
-  })
+  return data.docs
+    .map(({ id, name, poster, year, description }: Movie) => {
+      return { id, name, poster, year, description }
+    })
+    .filter((movie) => movie.name !== null)
+}
+
+export const getSingleMovieRestructuredApiData = (data: MovieApiData) => {
+  const { id, name, poster, year, description } = data.docs[0]
+  return { id, name, poster, year, description }
 }
 
 export const formatIdsQueryString = (ids: string[]): string => {
