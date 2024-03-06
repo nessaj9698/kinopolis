@@ -1,6 +1,6 @@
 export type User = {
   uid: number | string | null
-  email: string
+  email: string | null
 }
 
 export type UserFormInputs = {

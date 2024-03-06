@@ -40,8 +40,7 @@ export const Login = createAsyncThunk(
     { rejectWithValue, dispatch },
   ) => {
     try {
-      const response = await login(data)
-      const user = response.toJSON() as User
+      const user = await login(data)
       dispatch(setUser(user))
       if (user.uid !== null) {
         const dbData = await getUserDataFromDB(user.uid)

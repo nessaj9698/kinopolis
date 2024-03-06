@@ -6,10 +6,11 @@ import {
 
 import { UserFormInputs } from "../types/User"
 import { app } from "../firebase"
+import { User } from "../types/User"
 
 const auth = getAuth(app)
 const authAPI = {
-  async login(data: UserFormInputs) {
+  async login(data: UserFormInputs): Promise<User> {
     try {
       const resolve = await signInWithEmailAndPassword(
         auth,
