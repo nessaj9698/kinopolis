@@ -6,10 +6,3 @@
   position:relative;
 }
 
-.searchFormWrapper ul {
-  display:none;
-}
-
-.searchFormWrapper input:focus ~ ul {
-  display:block;
-}

@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+Кинополис - приложение для поиска фильмов
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**API** - (https://kinopoisk.dev/)
 
-## Available Scripts
+## **Возможности**
 
-In the project directory, you can run:
+- 🔐 **Регистрация и авторизация** пользователи могут создать учетную запись и авторизоваться в приложении, авторизация сохраняется после закрытия вкладки/браузера
+- 🔎 **Поиск** приложение предоставляет возможность поиска фильмов по названию
+- 🖤 **Избранное** пользователи могут добавлять фильмы в избранное
+- 🕣 **История поиска:** для авторизованных пользователей есть возможность сохранять историю поиска
 
-### `npm start`
+## Реализованные требования:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **1 уровень (обязательный - необходимый минимум)**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [x] Реализованы **Требования к функциональности**
 
-### `npm test`
+- [x] Для хранения учетных записей пользователей, их Избранного и Истории поиска, используется firebase + localStorage [**firebase**](https://firebase.google.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**React**
 
-### `npm run build`
+- [x] **Функциональные компоненты c хуками** в приоритете над классовыми
+- [x] Есть разделение на **[глупые](https://github.com/nessaj9698/aston-react/blob/main/src/components/layout/container/Container.tsx)** и **[умные](https://github.com/nessaj9698/aston-react/blob/main/src/components/searchForm/SearchForm.tsx)** компоненты
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] Есть [**рендеринг списков**](https://github.com/nessaj9698/aston-react/blob/main/src/components/movieCards/CardRows.tsx)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [x] Реализована хотя бы одна [**форма**](https://github.com/nessaj9698/aston-react/blob/main/src/components/userForm/UserForm.tsx)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] Есть применение [**Контекст API**](https://github.com/nessaj9698/aston-react/blob/main/src/pages/FavouritesPage/FavouritesPage.tsx)
 
-### `npm run eject`
+- [x] Есть применение **предохранителя** [Страница поиска](https://github.com/nessaj9698/aston-react/blob/main/src/pages/SearchPage/SearchPage.tsx) и [app](https://github.com/nessaj9698/aston-react/blob/main/src/App.tsx)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [x] Есть хотя бы один [**кастомный хук**](https://github.com/nessaj9698/aston-react/blob/main/src/hooks/useNavigateToSearch.ts)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [x] Хотя бы несколько компонентов используют **PropTypes** [тут](https://github.com/nessaj9698/aston-react/blob/main/src/components/layout/container/Container.tsx) и [тут](https://github.com/nessaj9698/aston-react/tree/main/src/components/loader)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [x] Поиск не должен триггерить много запросов к серверу [**debounce**](https://github.com/nessaj9698/aston-react/blob/main/src/hooks/useDebounce.ts)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [x] Есть применение [lazy](https://github.com/nessaj9698/aston-react/blob/main/src/routes/routes.js) + [Suspense](https://github.com/nessaj9698/aston-react/blob/main/src/components/layout/AppLayout.tsx)
 
-## Learn More
+**Redux**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [x] Используем [**Modern Redux with Redux Toolkit**](https://github.com/nessaj9698/aston-react/blob/main/src/store/store.ts)
+- [x] Используем [**слайсы**](https://github.com/nessaj9698/aston-react/blob/main/src/store/authSlice.ts)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [x] Есть хотя бы одна **кастомная мидлвара** или [**createListenerMiddleware**](https://github.com/nessaj9698/aston-react/blob/main/src/store/authMiddleware.ts)
+
+- [x] Используется [**RTK Query**](https://github.com/nessaj9698/aston-react/blob/main/src/store/moviesQueryApi.ts)
+
+- [x] Используется [**Transforming Responses**](https://github.com/nessaj9698/aston-react/blob/main/src/utils/dataFormatting.ts)
+
+### **2 уровень (необязательный)**
+
+- [x] Использование [**TypeScript**](https://github.com/nessaj9698/aston-react/blob/main/tsconfig.json)
+- [x] Использование Firebase + LocalStorage для учетных записей и их Избранного и Истории поиска
+
+## **Дополнительно**
+
+- [react-hook-forms](https://react-hook-form.com/) forms
+- [sonner](https://sonner.emilkowal.ski/toast) notification

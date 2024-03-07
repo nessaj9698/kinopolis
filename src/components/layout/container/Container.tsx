@@ -1,10 +1,13 @@
+import PropTypes from "prop-types"
+
 import s from "./Container.module.css"
 
-type Props = {
-  children: React.ReactNode
-  className?: string
+// @ts-expect-error covered by prop types
+export function Container({ children, className }) {
+  return <div className={`${s.container} ${className}`}>{children}</div>
 }
 
-export function Container({ children, className }: Props) {
-  return <div className={`${s.container} ${className}`}>{children}</div>
+Container.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 }

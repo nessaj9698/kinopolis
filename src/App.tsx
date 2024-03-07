@@ -4,6 +4,7 @@ import { router } from "./routes/routes"
 import { getUserFromLS } from "./utils/localStorage"
 import { useAppDispatch } from "./hooks/useAppDispatch"
 import { setUser } from "./store/authSlice"
+import { ErrorBoundary } from "./components/errorBoundary/ErrorBoundary"
 
 function App() {
   const dispatch = useAppDispatch()
@@ -12,7 +13,11 @@ function App() {
     dispatch(setUser(user))
   }
 
-  return <RouterProvider router={router} />
+  return (
+    <ErrorBoundary fallback={<h1>Произошла ошибка!</h1>}>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
+  )
 }
 
 export default App

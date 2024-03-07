@@ -4,28 +4,28 @@ import { getRestructuredApiData } from "../utils/dataFormatting"
 const API_KEY = process.env.REACT_APP_API_KEY
 const BASE_URL = "https://api.kinopoisk.dev"
 
-type Headers = {
-  "X-API-KEY": string
+type BaseHeaders = {
   "Content-Type": string
 }
 
-const requestOptions = {
-  method: "GET",
-  headers: {
-    "X-API-KEY": API_KEY,
-    "Content-Type": "application/json",
-  } as Headers,
+type HeadersWithApiKey = BaseHeaders & {
+  "X-API-KEY": string
 }
 
-export const fetchAllMovies = async (): Promise<Movie[]> => {
-  try {
-    const result = await fetch(`${BASE_URL}/v1.4/movie`, requestOptions)
-    const data = await result.json()
-    const restructuredData = getRestructuredApiData(data)
-    return restructuredData as Movie[]
-  } catch (error) {
-    throw error
+let headers: BaseHeaders | HeadersWithApiKey = {
+  "Content-Type": "application/json",
+}
+
+if (API_KEY) {
+  headers = {
+    ...headers,
+    "X-API-KEY": API_KEY,
   }
+}
+
+const requestOptions: RequestInit = {
+  method: "GET",
+  headers,
 }
 
 export const fetchMoviesByQuery = async (
@@ -39,20 +39,7 @@ export const fetchMoviesByQuery = async (
     )
     const data = await result.json()
     const restructuredData = getRestructuredApiData(data)
-    return restructuredData as Movie[]
-  } catch (error) {
-    throw error
-  }
-}
-
-export const fetchMoviesById = async (
-  ids: string | string[],
-): Promise<Movie[]> => {
-  try {
-    const result = await fetch(`${BASE_URL}/v1.4/movie?${ids}`, requestOptions)
-    const data = await result.json()
-    const restructuredData = getRestructuredApiData(data)
-    return restructuredData as Movie[]
+    return restructuredData
   } catch (error) {
     throw error
   }

@@ -1,25 +1,13 @@
-import { useEffect, useState } from "react"
-
 import { Container } from "../../components/layout/container/Container"
 import { SearchForm } from "../../components/searchForm/SearchForm"
 import { CardRows } from "../../components/movieCards/CardRows"
 import { Loader } from "../../components/loader/Loader"
-
-import { fetchAllMovies } from "../../api/moviesApi"
-import { Movie } from "../../types/Movies"
+import { useGetAllMoviesQuery } from "../../store/moviesQueryApi"
 
 import s from "./Homepage.module.css"
 
 export function HomePage() {
-  const [data, setData] = useState<Movie[]>([])
-  const [isLoading, setLoading] = useState<boolean>(true)
-
-  useEffect(() => {
-    fetchAllMovies().then((res) => {
-      setData(res)
-      setLoading(false)
-    })
-  }, [])
+  const { data, isLoading, error } = useGetAllMoviesQuery(undefined)
 
   return (
     <main>
@@ -31,7 +19,10 @@ export function HomePage() {
       </section>
       <section>
         <Container>
-          {isLoading ? <Loader /> : <CardRows data={data} />}
+          {isLoading && <Loader />}
+          {data && <CardRows data={data} />}
+          {error && <p>error</p>}
+          <p></p>
         </Container>
       </section>
     </main>

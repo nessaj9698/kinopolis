@@ -1,9 +1,12 @@
+import PropTypes from "prop-types"
+
 import s from "./Loader.module.css"
 
-export const Loader = () => {
+// @ts-expect-error covered by prop types
+export const Loader = ({ propsClasses }) => {
   return (
     <div className={s.loaderWrapper}>
-      <svg className={s.loader} viewBox="0 0 50 50">
+      <svg className={`${s.loader} ${propsClasses}`} viewBox="0 0 50 50">
         <circle
           className={s.loaderCircle}
           cx="25"
@@ -15,4 +18,8 @@ export const Loader = () => {
       </svg>
     </div>
   )
+}
+
+Loader.propTypes = {
+  propsClasses: PropTypes.string,
 }

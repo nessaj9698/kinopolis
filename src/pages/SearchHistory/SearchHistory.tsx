@@ -7,13 +7,13 @@ import {
 } from "../../utils/localStorage"
 import { Container } from "../../components/layout/container/Container"
 import { deleteUserDataFromDB } from "../../firebase/database/database"
-import { useAppSelector } from "../../hooks/useAppSelector"
+import { useAppSelector, userSelector } from "../../hooks/useAppSelector"
 
 import s from "./SearchHistory.module.css"
 
 const SearchHistory = () => {
   const [data, setData] = useState(getDataFromLS("history"))
-  const user = useAppSelector((state) => state.auth.user)
+  const user = useAppSelector(userSelector)
 
   const removeFromHistory = (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,

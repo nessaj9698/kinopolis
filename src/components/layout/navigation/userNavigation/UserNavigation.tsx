@@ -13,7 +13,7 @@ export const UserNavigation = () => {
     <nav>
       <ul>
         <li>
-          <NavLink to="/favourite">Избранное</NavLink>
+          <NavLink to="/favourites">Избранное</NavLink>
         </li>
         <li>
           <NavLink to="/history">История</NavLink>

@@ -5,11 +5,7 @@ import { login } from "../api/authApi"
 import { register } from "../api/authApi"
 import { UserFormInputs } from "../types/User"
 import { RegistrationErrorData } from "../types/User"
-import {
-  saveUserToLS,
-  removeDataFromLS,
-  saveDataToLS,
-} from "../utils/localStorage"
+import { saveUserToLS, saveDataToLS } from "../utils/localStorage"
 import { getUserDataFromDB } from "../firebase/database/database"
 
 type requestStatus = null | "complete" | "processing" | string
@@ -44,8 +40,7 @@ export const Login = createAsyncThunk(
     { rejectWithValue, dispatch },
   ) => {
     try {
-      const response = await login(data)
-      const user = response.toJSON() as User
+      const user = await login(data)
       dispatch(setUser(user))
       if (user.uid !== null) {
         const dbData = await getUserDataFromDB(user.uid)
@@ -53,7 +48,7 @@ export const Login = createAsyncThunk(
       }
       navigate("/")
     } catch (error) {
-      return rejectWithValue(error as Error)
+      return rejectWithValue(error)
     }
   },
 )
@@ -63,14 +58,14 @@ export const Registration = createAsyncThunk(
   async (data: UserFormInputs, { rejectWithValue }) => {
     try {
       const response = await register(data)
-      return response.toJSON() as User
+      return response.toJSON()
     } catch (error) {
-      return rejectWithValue(error as Error)
+      return rejectWithValue(error)
     }
   },
 )
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
@@ -85,7 +80,6 @@ const authSlice = createSlice({
       state.user = null
       state.isAuth = false
       state.loginizationStatus = null
-      removeDataFromLS()
     },
   },
   extraReducers: (builder) => {
