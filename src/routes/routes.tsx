@@ -7,7 +7,7 @@ import { PrivateComponent } from "../hoc/PrivateComponent"
 
 const LazyHomePage = lazy(() => import("../pages/HomePage/HomePage"))
 const LazySearchPage = lazy(() => import("../pages/SearchPage/SearchPage"))
-const LazyErrorPage = lazy(() => import("../pages/ErrorPage/ErrorPage"))
+const LazyErrorPage = lazy(() => import("../pages/errorPage/ErrorPage"))
 const LazyRegistrationPage = lazy(
   () => import("../pages/RegistrationPage/RegistrationPage"),
 )
