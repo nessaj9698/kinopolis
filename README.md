@@ -53,6 +53,7 @@
 
 - [x] Использование [**TypeScript**](https://github.com/nessaj9698/aston-react/blob/main/tsconfig.json)
 - [x] Использование Firebase + LocalStorage для учетных записей и их Избранного и Истории поиска
+- [x] Подключен storybook и созданы два, три сториса с knobs, которые показывают разные состояния компонента [**button**](https://github.com/nessaj9698/aston-react/blob/main/src/stories/Button.stories.tsx) и [**userForm**](https://github.com/nessaj9698/aston-react/blob/main/src/stories/UserForm.stories.tsx)
 
 ## **Дополнительно**
 
