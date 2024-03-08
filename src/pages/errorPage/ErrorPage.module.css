@@ -1,11 +1,11 @@
 .notFoundWrapper {
-    height:90vh;
-    display:flex;
-    align-items: center;
-    justify-content: center;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .notFoundTitle {
-    color:red;
-    text-align:center;
+  color: rgb(243, 9, 9);
+  text-align: center;
 }
