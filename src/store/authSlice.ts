@@ -1,8 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
-import { RejectedAction } from "@reduxjs/toolkit/dist/query/core/buildThunks"
-import { PayloadAction } from "@reduxjs/toolkit"
-
 import { User } from "../types/User"
 import { login } from "../api/authApi"
 import { register } from "../api/authApi"
