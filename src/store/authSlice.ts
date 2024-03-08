@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
+import { RejectedAction } from "@reduxjs/toolkit/dist/query/core/buildThunks"
+import { PayloadAction } from "@reduxjs/toolkit"
+
 import { User } from "../types/User"
 import { login } from "../api/authApi"
 import { register } from "../api/authApi"
@@ -31,6 +34,12 @@ const initialState: authState = {
   loginizationStatus: null,
   loginizationError: null,
   user: null,
+}
+
+const isRegistrationErrorData = (
+  data: RegistrationErrorData | null | unknown,
+): data is RegistrationErrorData => {
+  return typeof data === "object" && data !== null && "code" in data
 }
 
 export const Login = createAsyncThunk(
@@ -90,9 +99,9 @@ export const authSlice = createSlice({
       })
       .addCase(Registration.rejected, (state, action) => {
         state.registrationStatus = "Error"
-        const response = action.payload as RegistrationErrorData
-        const { code } = response
-        state.registrationError = code
+        if (isRegistrationErrorData(action.payload)) {
+          state.registrationError = action.payload.code
+        }
       })
       .addCase(Registration.pending, (state) => {
         state.registrationStatus = "processing"
@@ -106,9 +115,9 @@ export const authSlice = createSlice({
       })
       .addCase(Login.rejected, (state, action) => {
         state.loginizationStatus = "Error"
-        const response = action.payload as RegistrationErrorData
-        const { code } = response
-        state.loginizationError = code
+        if (isRegistrationErrorData(action.payload)) {
+          state.registrationError = action.payload.code
+        }
       })
       .addCase(Login.pending, (state) => {
         state.loginizationStatus = "processing"
