@@ -12,7 +12,7 @@ import { useAppSelector, userSelector } from "../../hooks/useAppSelector"
 import s from "./SearchHistory.module.css"
 
 const SearchHistory = () => {
-  const [data, setData] = useState(getDataFromLS("history"))
+  const [data, setData] = useState<string[]>(getDataFromLS("history"))
   const user = useAppSelector(userSelector)
 
   const removeFromHistory = (

@@ -8,7 +8,7 @@ import { RegistrationErrorData } from "../types/User"
 import { saveUserToLS, saveDataToLS } from "../utils/localStorage"
 import { getUserDataFromDB } from "../firebase/database/database"
 
-type requestStatus = null | "complete" | "processing" | string
+export type requestStatus = null | "complete" | "processing" | string
 
 type loginThunkProps = {
   data: UserFormInputs
@@ -58,7 +58,7 @@ export const Registration = createAsyncThunk(
   async (data: UserFormInputs, { rejectWithValue }) => {
     try {
       const response = await register(data)
-      return response.toJSON()
+      return response
     } catch (error) {
       return rejectWithValue(error)
     }

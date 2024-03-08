@@ -23,7 +23,7 @@ export const moviesApi = createApi({
   endpoints: (builder) => ({
     getAllMovies: builder.query<Movie[], undefined>({
       query: () => `/movie`,
-      transformResponse: (data: MovieApiData) => {
+      transformResponse: (data: MovieApiData): Movie[] => {
         return getRestructuredApiData(data)
       },
     }),
@@ -38,7 +38,7 @@ export const moviesApi = createApi({
         }
       },
       keepUnusedDataFor: 1,
-      transformResponse: (data: MovieApiData) => {
+      transformResponse: (data: MovieApiData): Movie[] => {
         return getRestructuredApiData(data)
       },
     }),
@@ -46,7 +46,7 @@ export const moviesApi = createApi({
       query: (ids) => {
         return `/movie?${ids}`
       },
-      transformResponse: (data: MovieApiData) => {
+      transformResponse: (data: MovieApiData): Movie[] => {
         return getRestructuredApiData(data)
       },
     }),
@@ -54,7 +54,7 @@ export const moviesApi = createApi({
       query: (id) => {
         return `/movie?id=${id}`
       },
-      transformResponse: (data: MovieApiData) => {
+      transformResponse: (data: MovieApiData): Movie => {
         return getSingleMovieRestructuredApiData(data)
       },
     }),

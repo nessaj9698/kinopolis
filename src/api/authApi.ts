@@ -23,7 +23,7 @@ const authAPI = {
       throw error
     }
   },
-  async register(data: UserFormInputs) {
+  async register(data: UserFormInputs): Promise<User> {
     try {
       const resolve = await createUserWithEmailAndPassword(
         auth,
