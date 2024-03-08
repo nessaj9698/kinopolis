@@ -43,18 +43,20 @@ export const UserForm = ({
         <label htmlFor="email">Email:</label>
         <Controller
           name="email"
-          key={1}
           control={control}
+          defaultValue=""
           rules={{
             required: "Обязательное поле",
-            pattern: { value: /^\S+@\S+$/i, message: "Неверный формат email" },
+            pattern: {
+              value: /^\S+@\S+$/i,
+              message: "Неверный формат email",
+            },
           }}
           render={({ field }) => (
             <input
               {...field}
               type="email"
               placeholder="Введите ваш email"
-              defaultValue={field.value || ""}
               onBlur={() => validateField("email")}
               aria-invalid={errors.email ? "true" : "false"}
             />
@@ -68,7 +70,7 @@ export const UserForm = ({
         <Controller
           name="password"
           control={control}
-          key={2}
+          defaultValue=""
           rules={{
             required: "Обязательное поле",
             minLength: {
@@ -81,8 +83,7 @@ export const UserForm = ({
               {...field}
               type="password"
               placeholder="Введите ваш пароль"
-              defaultValue={field.value || ""}
-              onBlur={() => validateField("email")}
+              onBlur={() => validateField("password")}
               aria-invalid={errors.password ? "true" : "false"}
             />
           )}
