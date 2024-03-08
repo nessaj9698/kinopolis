@@ -22,7 +22,6 @@ export function HomePage() {
           {isLoading && <Loader />}
           {data && <CardRows data={data} />}
           {error && <p>error</p>}
-          <p></p>
         </Container>
       </section>
     </main>

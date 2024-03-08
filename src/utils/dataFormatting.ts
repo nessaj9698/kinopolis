@@ -1,6 +1,6 @@
 import { MovieApiData, Movie } from "../types/Movies"
 
-export const getRestructuredApiData = (data: MovieApiData) => {
+export const getRestructuredApiData = (data: MovieApiData): Movie[] => {
   return data.docs
     .map(({ id, name, poster, year, description }: Movie) => {
       return { id, name, poster, year, description }
@@ -8,7 +8,9 @@ export const getRestructuredApiData = (data: MovieApiData) => {
     .filter((movie) => movie.name !== null)
 }
 
-export const getSingleMovieRestructuredApiData = (data: MovieApiData) => {
+export const getSingleMovieRestructuredApiData = (
+  data: MovieApiData,
+): Movie => {
   const { id, name, poster, year, description } = data.docs[0]
   return { id, name, poster, year, description }
 }

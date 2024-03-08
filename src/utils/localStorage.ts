@@ -11,7 +11,7 @@ export const removeDataFromLS = () => {
   localStorage.removeItem("history")
 }
 
-export const getUserFromLS = () => {
+export const getUserFromLS = (): User | null => {
   const user = localStorage.getItem("user")
   if (user) {
     return JSON.parse(user)
@@ -50,7 +50,9 @@ export const saveDataToLS = (obj: DataFromDB) => {
   }
 }
 
-export const getDataFromLS = (dataItem: "likedMovies" | "history") => {
+export const getDataFromLS = (
+  dataItem: "likedMovies" | "history",
+): string[] => {
   const data = localStorage.getItem(dataItem)
   if (data) {
     const dataArray = JSON.parse(data)

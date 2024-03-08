@@ -26,10 +26,12 @@ export const MovieCard = ({ id, name, poster }: Movie) => {
       deleteUserDataFromDB(userId, "likedMovies", id)
     }
   }, [])
+
   return (
     <Link to={`/movie/${id}`}>
       <article className={s.movieCard}>
-        <img src={poster.previewUrl || moviePosterDefault} />
+        <img src={poster?.previewUrl ?? moviePosterDefault} />
+
         <h2>{name}</h2>
         {userId && (
           <HeartIcon

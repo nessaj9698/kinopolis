@@ -8,7 +8,7 @@ import { RegistrationErrorData } from "../types/User"
 import { saveUserToLS, saveDataToLS } from "../utils/localStorage"
 import { getUserDataFromDB } from "../firebase/database/database"
 
-type requestStatus = null | "complete" | "processing" | string
+export type requestStatus = null | "complete" | "processing" | string
 
 type loginThunkProps = {
   data: UserFormInputs
@@ -31,6 +31,12 @@ const initialState: authState = {
   loginizationStatus: null,
   loginizationError: null,
   user: null,
+}
+
+const isRegistrationErrorData = (
+  data: RegistrationErrorData | null | unknown,
+): data is RegistrationErrorData => {
+  return typeof data === "object" && data !== null && "code" in data
 }
 
 export const Login = createAsyncThunk(
@@ -58,7 +64,7 @@ export const Registration = createAsyncThunk(
   async (data: UserFormInputs, { rejectWithValue }) => {
     try {
       const response = await register(data)
-      return response.toJSON()
+      return response
     } catch (error) {
       return rejectWithValue(error)
     }
@@ -90,9 +96,9 @@ export const authSlice = createSlice({
       })
       .addCase(Registration.rejected, (state, action) => {
         state.registrationStatus = "Error"
-        const response = action.payload as RegistrationErrorData
-        const { code } = response
-        state.registrationError = code
+        if (isRegistrationErrorData(action.payload)) {
+          state.registrationError = action.payload.code
+        }
       })
       .addCase(Registration.pending, (state) => {
         state.registrationStatus = "processing"
@@ -106,9 +112,9 @@ export const authSlice = createSlice({
       })
       .addCase(Login.rejected, (state, action) => {
         state.loginizationStatus = "Error"
-        const response = action.payload as RegistrationErrorData
-        const { code } = response
-        state.loginizationError = code
+        if (isRegistrationErrorData(action.payload)) {
+          state.registrationError = action.payload.code
+        }
       })
       .addCase(Login.pending, (state) => {
         state.loginizationStatus = "processing"
